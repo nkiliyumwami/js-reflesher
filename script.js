@@ -135,7 +135,7 @@ const data = [
   },
 ];
 
-function getBooks() {
+/* function getBooks() {
   return data;
 }
 
@@ -145,7 +145,7 @@ function getBook(id) {
 
 // 01.Destructuring: Object
 const books = getBooks();
-const book = getBook(1);
+const book = getBook(3);
 
 // const title = book.title;
 // const author = book.author;
@@ -219,3 +219,105 @@ console.log(0 || "something");
 //falsy: 0, " ", null, undefined : two trufy; you get the second one
 console.log("something" && "peter");
 console.log(0 && "something");
+
+// console.log(book.reviews.librarything.reviewsCount);
+
+// const wrongCount = book.reviews.librarything.reviewsCount || "no data";
+// console.log(wrongCount);
+
+//the above is wrong because the answer should be zero not 'no data'
+//to solve that we use another JS expression: which is: ' ??'
+
+// const realCount = book.reviews.librarything.reviewsCount ?? "no data";
+// console.log(realCount);
+
+//07.Optional chaining: ?
+//our book array has 2 kinds of reviews: let us write a function to get the sum of those both reviews
+const getTotalReviewCount = (book) => {
+  console.log(book);
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount;
+  console.log(librarything);
+  return goodreads + librarything;
+};
+
+console.log(getTotalReviewCount(book));
+
+const newData = [
+  {
+    id: 1,
+    name: "Peter",
+    checking: 500,
+  },
+  {
+    id: 2,
+    name: "John",
+    checking: 100,
+    savings: 900,
+  },
+];
+
+function getPersons() {
+  return newData;
+}
+
+function getPerson(id) {
+  return newData.find((d) => d.id === id);
+}
+
+const persons = getPersons();
+const person = getPerson(1);
+
+console.log(person);
+
+function getTotalBalance(person) {
+  const saving = person?.savings ?? 0;
+  const checking = person.checking;
+  console.log(saving);
+  console.log(checking);
+  return saving + checking;
+}
+
+console.log(getTotalBalance(person));
+//to solve this problem we use '??' to assign a default value to the person1.saving:
+//if we remove the '?? 0' the answer will be 'NaN'
+ */
+
+//08 Functional Array Methods
+function getBooks() {
+  return data;
+}
+
+function getBook(id) {
+  return data.find((d) => d.id === id);
+}
+
+//08.01.Map
+//Get all books
+const books = getBooks();
+
+//create an array which has all books titles
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+//create an object containing essential date: titles and author: using parethesis to return an object
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+console.log(essentialData);
+
+//08.01.Filter
+//Create an array of books only have more than 500 pages and only have movie adaptation
+const longbooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+console.log(longbooksWithMovie);
+longbooksWithMovie;
+
+//Get  the title of adventures books only
+const adventureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+
+adventureBooks;
