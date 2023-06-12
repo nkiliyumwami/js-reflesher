@@ -307,7 +307,7 @@ const essentialData = books.map((book) => ({
 }));
 console.log(essentialData);
 
-//08.01.Filter
+//08.02.Filter
 //Create an array of books only have more than 500 pages and only have movie adaptation
 const longbooksWithMovie = books
   .filter((book) => book.pages > 500)
@@ -321,3 +321,20 @@ const adventureBooks = books
   .map((book) => book.title);
 
 adventureBooks;
+
+//08.03.Reduce : Reduce will always reduce the entire array into a one single value
+//Let say we want to read all books and we are curious of how many pages we would have to read
+//i.e here the solutions will be to add together all pages in books array
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+pagesAllBooks;
+
+//08.04.Sort:
+//Sort an array: Be carefull be sort as it mutate the original array: it change the original array
+const arrayX = [2, 9, 1, 3, 120, 19, 3456];
+const sortedAsc = arrayX.sort((a, b) => a - b);
+sortedAsc;
+arrayX;
+
+const sortedDesc = arrayX.sort((c, d) => d - c);
+sortedDesc;
+arrayX;
