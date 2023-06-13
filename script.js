@@ -338,3 +338,46 @@ arrayX;
 const sortedDesc = arrayX.sort((c, d) => d - c);
 sortedDesc;
 arrayX;
+
+//Sort the entire books array by the number of pages
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortedByPages;
+
+//Working with Arrays
+//How to Delete/Add/Update element on an array without changing the original onw
+//01. Add a book object to the array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secret",
+  author: "J.K. Rowling",
+};
+
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+//02. Remove book object from books
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 2);
+booksAfterDelete;
+
+//better way to write the above (with a function)
+const deleteBook = (id) => {
+  const result = booksAfterAdd.filter((book) => book.id !== id);
+  return result;
+};
+
+console.log(deleteBook(3));
+
+//03. Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 67890 } : book
+);
+booksAfterUpdate;
+
+//better way to write the above with a function
+const updateBook = (id) => {
+  const updatedBook = booksAfterDelete.map((book) =>
+    book.id === id ? { ...book, pages: 4500 } : book
+  );
+  return updatedBook;
+};
+console.log(updateBook(6));
