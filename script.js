@@ -283,7 +283,7 @@ console.log(getTotalBalance(person));
 //if we remove the '?? 0' the answer will be 'NaN'
  */
 
-//08 Functional Array Methods
+/* //08 Functional Array Methods
 function getBooks() {
   return data;
 }
@@ -380,4 +380,29 @@ const updateBook = (id) => {
   );
   return updatedBook;
 };
-console.log(updateBook(6));
+console.log(updateBook(6)); */
+
+//JAVASCRIPT ASYNCH
+//01. PROMISES
+/* fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json())
+  .then((data) => console.log(data)); */
+
+console.log("This come first");
+
+//02. ASYNCH/AWAIT(better way)
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+}
+getTodos();
+
+//better way with arraw function
+const newGetTodos = async () => {
+  const result = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await result.json();
+  console.log(data);
+};
+
+newGetTodos();
